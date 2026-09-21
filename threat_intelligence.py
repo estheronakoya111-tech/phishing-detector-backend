@@ -4,10 +4,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-api_key = os.getenv("GOOGLE_SAFE_BROWSING_API_KEY")
+api_key = os.getenv("GOOGLE_SAFE_BROWSING_API_KEY", "")
 endpoint = "https://safebrowsing.googleapis.com/v4/threatMatches:find"
-
-endpoint = endpoint + "?key=" + api_key
+if api_key:
+    endpoint = f"{endpoint}?key={api_key}"
 
 
 def check_url_reputation(url):
